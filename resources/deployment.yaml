@@ -1,202 +1,47 @@
-kind: DeploymentConfig
-apiVersion: apps.openshift.io/v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: helloworld-rest
-  namespace: ti-redhat-dev-ipa
+  labels:
+    app: app-eap
+    app.kubernetes.io/component: app-eap
+    app.kubernetes.io/instance: app-eap
+  name: app-eap
 spec:
-  strategy:
-    type: Rolling
-    rollingParams:
-      updatePeriodSeconds: 1
-      intervalSeconds: 1
-      timeoutSeconds: 120
-      maxUnavailable: 10%
-      maxSurge: 20%
-    resources: {}
-    activeDeadlineSeconds: 21600
-  triggers:
-    - type: ConfigChange
+  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 2
-  test: false
+  revisionHistoryLimit: 10
   selector:
-    deploymentConfig: helloworld-rest
+    matchLabels:
+      deployment: app-eap    
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
-      name: helloworld-rest
-      creationTimestamp: null
-      labels:
-        app: helloworld-rest
-        deploymentConfig: helloworld-rest
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        deployment: app-eap
     spec:
-      volumes:
-        - name: eap-keystore-volume
-          secret:
-            secretName: eap7-app-secret
-            defaultMode: 420
-        - name: eap-jgroups-keystore-volume
-          secret:
-            secretName: eap7-app-secret
-            defaultMode: 420
-        - name: eap-ds-credential-store
-          secret:
-            secretName: eap-ds-credential-store
-            defaultMode: 420
       containers:
-        - resources:
-            limits:
-              memory: 1Gi
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8443
-              scheme: HTTPS
-            initialDelaySeconds: 30
-            timeoutSeconds: 1
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 10
-          terminationMessagePath: /dev/termination-log
-          name: helloworld-rest
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8443
-              scheme: HTTPS
-            initialDelaySeconds: 180
-            timeoutSeconds: 1
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 10
-          env:
-            - name: DISABLE_EMBEDDED_JMS_BROKER
-              value: 'true'
-            - name: JGROUPS_PING_PROTOCOL
-              value: dns.DNS_PING
-            - name: OPENSHIFT_DNS_PING_SERVICE_NAME
-              value: helloworld-rest-ping
-            - name: OPENSHIFT_DNS_PING_SERVICE_PORT
-              value: '8888'
-            - name: MQ_CLUSTER_PASSWORD
-              value: as5qA8E2
-            - name: MQ_QUEUES
-            - name: MQ_TOPICS
-            - name: JGROUPS_ENCRYPT_SECRET
-              value: eap7-app-secret
-            - name: JGROUPS_ENCRYPT_KEYSTORE_DIR
-              value: /etc/jgroups-encrypt-secret-volume
-            - name: JGROUPS_ENCRYPT_KEYSTORE
-              value: jgroups.jceks
-            - name: JGROUPS_ENCRYPT_NAME
-              value: secret-key
-            - name: JGROUPS_ENCRYPT_PASSWORD
-              value: password
-            - name: JGROUPS_CLUSTER_PASSWORD
-              value: s3CoBkrK
-            - name: AUTO_DEPLOY_EXPLODED
-              value: 'false'
-            - name: TZ
-              value: Etc/GMT+3
-            - name: JAVA_OPTS_APPEND
-              value: '-Djavax.net.ssl.trustStore=/etc/eap-secret-volume/openshift.jks'
-            - name: APPLICATION_NAME
-              value: helloworld-rest
-            - name: AMBIENTE
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: AMBIENTE
-            - name: DS_ADM
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_ADM
-            - name: DS_ADM_CLONE
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_ADM_CLONE
-            - name: DS_BRONER_CLONE
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_BRONER_CLONE
-            - name: DS_PROD
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_PROD
-            - name: LOCALIZACAO
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: LOCALIZACAO
-            - name: DS_BRONER
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_BRONER
-            - name: DS_EXTRANET
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_EXTRANET
-            - name: DS_EXTRANET_SU
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_EXTRANET_SU
-            - name: DS_HISTORICO
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_HISTORICO
-            - name: DS_PROD_CLONE
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: DS_PROD_CLONE
-            - name: EJB_COMUM_REMOTE_PATH
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: EJB_COMUM_REMOTE_PATH
-            - name: SERVIDOR_WEB
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-datasources
-                  key: SERVIDOR_WEB
-          ports:
-            - name: jolokia
-              containerPort: 8778
-              protocol: TCP
-            - name: http
-              containerPort: 8080
-              protocol: TCP
-            - name: https
-              containerPort: 8443
-              protocol: TCP
-            - name: ping
-              containerPort: 8888
-              protocol: TCP
-          imagePullPolicy: Always
-          volumeMounts:
-            - name: eap-keystore-volume
-              readOnly: true
-              mountPath: /etc/eap-secret-volume
-            - name: eap-jgroups-keystore-volume
-              readOnly: true
-              mountPath: /etc/jgroups-encrypt-secret-volume
-            - name: eap-ds-credential-store
-              readOnly: true
-              mountPath: /opt/eap/ssl
-          terminationMessagePolicy: File
-          image: >-
-            image-registry.openshift-image-registry.svc:5000/ti-redhat-dev-ipa/helloworld-rest@sha256:5b7ad019f2d2ec802ce1ca39d6d01a104d42eac6e4a60e0a3ca6bb4830ac5c19
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 75
+      - image: ricardoaraujo75/app-eap:latest
+        imagePullPolicy: IfNotPresent
+        name: app-eap
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
-      securityContext: {}
+      restartPolicy: Always
       schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

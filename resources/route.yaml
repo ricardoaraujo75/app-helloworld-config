@@ -1,14 +1,16 @@
-kind: Route
 apiVersion: route.openshift.io/v1
+kind: Route
 metadata:
-  name: helloworld-rest
-  namespace: ti-redhat-dev-ipa
+  labels:
+    app: app-eap
+    app.kubernetes.io/component: app-eap
+    app.kubernetes.io/instance: app-eap
+  name: app-eap
 spec:
-  host: helloworld-rest-ti-redhat-dev-ipa.apps.ocp-ipa.usiminas.su.net
+  port:
+    targetPort: 8080-tcp
   to:
     kind: Service
-    name: helloworld-rest
+    name: app-eap
     weight: 100
-  port:
-    targetPort: 8501-tcp
   wildcardPolicy: None
