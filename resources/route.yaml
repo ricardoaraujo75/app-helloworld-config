@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: helloworld-rest
+  namespace: ti-redhat-dev-ipa
+spec:
+  host: helloworld-rest-ti-redhat-dev-ipa.apps.ocp-ipa.usiminas.su.net
+  to:
+    kind: Service
+    name: helloworld-rest
+    weight: 100
+  port:
+    targetPort: 8501-tcp
+  wildcardPolicy: None
