@@ -1,7 +1,7 @@
 kind: ImageStreamTag
 apiVersion: image.openshift.io/v1
 metadata:
-  name: 'eap-app:latest'
+  name: eap-app
   namespace: pipeline-prj
   annotations:
     openshift.io/generated-by: OpenShiftWebConsole
@@ -26,8 +26,6 @@ image:
   metadata:
     name: 'sha256:c332b53570943bf72416b1b5828c28e3abea942585bf5b058c83963cbe7bfd8c'
     uid: 41d8cfc9-38d2-4383-bb08-c3ef69aae3cb
-    resourceVersion: '546997'
-    creationTimestamp: '2023-06-28T03:30:59Z'
     annotations:
       image.openshift.io/dockerLayersOrder: ascending
       openshift.io/generated-by: OpenShiftWebConsole
