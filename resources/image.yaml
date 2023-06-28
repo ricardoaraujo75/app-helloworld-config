@@ -3,12 +3,6 @@ apiVersion: image.openshift.io/v1
 metadata:
   name: 'eap-app:latest'
   namespace: pipeline-prj
-  labels:
-    app: eap-app
-    app.kubernetes.io/component: eap-app
-    app.kubernetes.io/instance: eap-app
-    app.kubernetes.io/name: eap-app
-    app.kubernetes.io/part-of: eap-app
   annotations:
     openshift.io/generated-by: OpenShiftWebConsole
     openshift.io/imported-from: 'docker.io/ricardoaraujo75/eap-app:latest'
