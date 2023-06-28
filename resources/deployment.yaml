@@ -27,7 +27,7 @@ spec:
         deployment: app-eap
     spec:
       containers:
-      - image: ricardoaraujo75/app-eap:latest
+      - image: docker.io/ricardoaraujo75/app-eap:latest
         imagePullPolicy: IfNotPresent
         name: app-eap
         ports:
