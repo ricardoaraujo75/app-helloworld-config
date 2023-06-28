@@ -27,7 +27,7 @@ spec:
         deployment: app-eap
     spec:
       containers:
-      - image: ricardoaraujo75/app-eap:latest
+      - image: image-registry.openshift-image-registry.svc:5000/pipeline-prj/eap-app@sha256:c332b53570943bf72416b1b5828c28e3abea942585bf5b058c83963cbe7bfd8c
         imagePullPolicy: IfNotPresent
         name: app-eap
         ports:

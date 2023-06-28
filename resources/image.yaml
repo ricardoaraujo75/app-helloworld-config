@@ -1,0 +1,364 @@
+kind: ImageStreamTag
+apiVersion: image.openshift.io/v1
+metadata:
+  name: 'eap-app:latest'
+  namespace: pipeline-prj
+  labels:
+    app: eap-app
+    app.kubernetes.io/component: eap-app
+    app.kubernetes.io/instance: eap-app
+    app.kubernetes.io/name: eap-app
+    app.kubernetes.io/part-of: eap-app
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+    openshift.io/imported-from: 'docker.io/ricardoaraujo75/eap-app:latest'
+tag:
+  name: latest
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+    openshift.io/imported-from: 'docker.io/ricardoaraujo75/eap-app:latest'
+  from:
+    kind: DockerImage
+    name: 'docker.io/ricardoaraujo75/eap-app:latest'
+  generation: 2
+  importPolicy:
+    importMode: Legacy
+  referencePolicy:
+    type: Local
+generation: 2
+lookupPolicy:
+  local: false
+image:
+  metadata:
+    name: 'sha256:c332b53570943bf72416b1b5828c28e3abea942585bf5b058c83963cbe7bfd8c'
+    uid: 41d8cfc9-38d2-4383-bb08-c3ef69aae3cb
+    resourceVersion: '546997'
+    creationTimestamp: '2023-06-28T03:30:59Z'
+    annotations:
+      image.openshift.io/dockerLayersOrder: ascending
+      openshift.io/generated-by: OpenShiftWebConsole
+      openshift.io/imported-from: 'docker.io/ricardoaraujo75/eap-app:latest'
+  dockerImageReference: >-
+    image-registry.openshift-image-registry.svc:5000/pipeline-prj/eap-app@sha256:c332b53570943bf72416b1b5828c28e3abea942585bf5b058c83963cbe7bfd8c
+  dockerImageMetadata:
+    Size: 559628310
+    Container: c03af9833d83d7f6feffd0a0b675a23457e96900860eae3e9624a848ac7f0273
+    Config:
+      Hostname: 4d51740e78f3
+      User: '185'
+      ExposedPorts:
+        8080/tcp: {}
+        8443/tcp: {}
+        8778/tcp: {}
+      Env:
+        - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+        - container=oci
+        - HOME=/home/jboss
+        - JAVA_HOME=/usr/lib/jvm/java-11
+        - JAVA_VENDOR=openjdk
+        - JAVA_VERSION=11
+        - JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk
+        - JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/
+        - MAVEN_VERSION=3.6
+        - EAP_FULL_GROUPID=org.jboss.eap
+        - JBOSS_EAP_VERSION=7.4.11
+        - JBOSS_HOME=/opt/eap
+        - JBOSS_PRODUCT=eap
+        - LAUNCH_JBOSS_IN_BACKGROUND=true
+        - PRODUCT_VERSION=7.4.11
+        - WILDFLY_VERSION=7.4.11.GA-redhat-00002
+        - SSO_FORCE_LEGACY_SECURITY=true
+        - JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy
+        - JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm
+        - JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/
+        - >-
+          JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/
+        - S2I_SOURCE_DEPLOYMENTS_FILTER=*.war *.ear *.rar *.jar
+        - JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/
+        - JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i
+        - >-
+          GALLEON_LOCAL_MAVEN_REPO=/opt/jboss/container/wildfly/s2i/galleon/galleon-m2-repository
+        - >-
+          GALLEON_MAVEN_BUILD_IMG_SETTINGS_XML=/opt/jboss/container/wildfly/s2i/galleon/build-image-settings.xml
+        - >-
+          GALLEON_MAVEN_SETTINGS_XML=/opt/jboss/container/wildfly/s2i/galleon/settings.xml
+        - GALLEON_VERSION=4.2.9.Final
+        - GALLEON_WILDFLY_VERSION=5.2.6.Final
+        - >-
+          JBOSS_CONTAINER_WILDFLY_S2I_GALLEON_DIR=/opt/jboss/container/wildfly/s2i/galleon
+        - >-
+          JBOSS_CONTAINER_WILDFLY_S2I_GALLEON_PROVISION=/opt/jboss/container/wildfly/s2i/galleon/provisioning/generic_provisioning
+        - JBOSS_CONTAINER_WILDFLY_S2I_MODULE=/opt/jboss/container/wildfly/s2i
+        - S2I_COPY_SERVER=true
+        - >-
+          TMP_GALLEON_LOCAL_MAVEN_REPO=/opt/jboss/container/wildfly/s2i/galleon/tmp-galleon-m2-repository
+        - WILDFLY_S2I_OUTPUT_DIR=/s2i-output
+        - DELETE_BUILD_ARTIFACTS=true
+        - GALLEON_BUILD_FP_MAVEN_ARGS_APPEND=-Dcom.redhat.xpaas.repo.jbossorg
+        - >-
+          GALLEON_DEFAULT_FAT_SERVER=/opt/jboss/container/eap/galleon/definitions/fat-default-server
+        - >-
+          GALLEON_DEFAULT_SERVER=/opt/jboss/container/eap/galleon/definitions/slim-default-server
+        - GALLEON_DEFINITIONS=/opt/jboss/container/eap/galleon/definitions
+        - GALLEON_FP_COMMON_PKG_NAME=eap.s2i.common
+        - GALLEON_FP_PATH=/opt/jboss/container/eap/galleon/eap-s2i-galleon-pack
+        - >-
+          GALLEON_MAVEN_REPO_HOOK_SCRIPT=/opt/jboss/container/eap/galleon/patching.sh
+        - GALLEON_PROVISON_FP_MAVEN_ARGS_APPEND=-Dcom.redhat.xpaas.repo.jbossorg
+        - GALLEON_S2I_FP_ARTIFACT_ID=eap-s2i-galleon-pack
+        - GALLEON_S2I_FP_GROUP_ID=org.jboss.eap.galleon.s2i
+        - GALLEON_S2I_PRODUCER_NAME=eap-s2i
+        - >-
+          JBOSS_CONTAINER_EAP_GALLEON_FP_PACKAGES=/opt/jboss/container/eap/galleon/eap-s2i-galleon-pack/src/main/resources/packages
+        - >-
+          OFFLINER_URLS=--url https://repo1.maven.org/maven2/ --url
+          https://repository.jboss.org/nexus/content/groups/public/ --url
+          https://maven.repository.redhat.com/ga/
+        - >-
+          WILDFLY_DIST_MAVEN_LOCATION=https://repository.jboss.org/nexus/content/groups/public/org/wildfly/wildfly-dist
+        - S2I_FP_VERSION=23.0.0.Final
+        - DEFAULT_ADMIN_USERNAME=eapadmin
+        - LD_PRELOAD=libnss_wrapper.so
+        - NSS_WRAPPER_GROUP=/etc/group
+        - NSS_WRAPPER_PASSWD=/home/jboss/passwd
+        - 'JBOSS_MODULES_SYSTEM_PKGS=jdk.nashorn.api,com.sun.crypto.provider'
+        - AB_JOLOKIA_AUTH_OPENSHIFT=true
+        - AB_JOLOKIA_HTTPS=true
+        - AB_JOLOKIA_PASSWORD_RANDOM=true
+        - JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia
+        - JOLOKIA_VERSION=1.7.1
+        - >-
+          AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml
+        - JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus
+        - OFFLINER_VERSION=1.6
+        - AB_PROMETHEUS_JMX_EXPORTER_PORT=9799
+        - HTTPS_ENABLE_HTTP2=true
+        - JBOSS_IMAGE_NAME=jboss-eap-7/eap74-openjdk11-openshift-rhel8
+        - JBOSS_IMAGE_VERSION=7.4.11
+        - OPENSHIFT_BUILD_NAME=eap-app-3
+        - OPENSHIFT_BUILD_NAMESPACE=europe
+        - >-
+          OPENSHIFT_BUILD_SOURCE=https://github.com/ricardoaraujo75/devops-ocp-app.git
+        - OPENSHIFT_BUILD_COMMIT=e9036143c95b0ed93d82d0ee7722c87f267054b1
+      Cmd:
+        - /bin/sh
+        - '-c'
+        - /usr/local/s2i/run
+      WorkingDir: /home/jboss
+      Labels:
+        org.jboss.container.deployments-dir: /deployments
+        vcs-type: git
+        io.openshift.build.commit.author: riaraujo <riaraujo@redhat.com>
+        io.k8s.display-name: JBoss EAP 7.4
+        com.redhat.component: jboss-eap-74-openjdk11-builder-openshift-rhel8-container
+        summary: >-
+          Red Hat JBoss Enterprise Application Platform 7.4 OpenShift container
+          image.
+        release: '3'
+        io.openshift.build.commit.date: 'Tue Mar 28 21:59:31 2023 -0300'
+        io.openshift.s2i.scripts-url: 'image:///usr/local/s2i'
+        vendor: 'Red Hat, Inc.'
+        io.openshift.expose-services: '8080:http'
+        io.openshift.build.source-location: 'https://github.com/ricardoaraujo75/devops-ocp-app.git'
+        distribution-scope: public
+        name: jboss-eap-7/eap74-openjdk11-openshift-rhel8
+        vcs-ref: f8f65d991606c4178cd18265d7e664d0f6c04cc4
+        io.openshift.s2i.destination: /tmp
+        io.k8s.description: Platform for building and running JavaEE applications on JBoss EAP 7.4
+        build-date: '2023-05-23T15:21:31'
+        io.fabric8.s2i.version.maven: '3.6'
+        org.jboss.product: eap
+        io.openshift.build.commit.message: WIP
+        url: >-
+          https://access.redhat.com/containers/#/registry.access.redhat.com/jboss-eap-7/eap74-openjdk11-openshift-rhel8/images/7.4.11-3
+        org.jboss.product.openjdk.version: '11'
+        com.redhat.dev-mode: 'DEBUG:true'
+        com.redhat.license_terms: 'https://www.redhat.com/agreements'
+        architecture: x86_64
+        io.openshift.build.commit.id: e9036143c95b0ed93d82d0ee7722c87f267054b1
+        io.cekit.version: 3.2.1
+        io.openshift.tags: 'builder,javaee,eap,eap7'
+        com.redhat.deployments-dir: /opt/eap/standalone/deployments
+        io.buildah.version: 1.26.4
+        version: 7.4.11
+        org.jboss.product.version: 7.4.11
+        maintainer: Red Hat
+        io.openshift.build.commit.ref: main
+        io.openshift.build.source-context-dir: /
+        description: >-
+          Red Hat JBoss Enterprise Application Platform 7.4 OpenShift container
+          image.
+        com.redhat.dev-mode.port: 'DEBUG_PORT:8787'
+        io.openshift.build.image: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/jboss-eap74-openjdk11-openshift@sha256:625b52d27a99cec0dde22150805b8de7a84117b046da75703dcd348f6dd2117c
+        org.jboss.product.eap.version: 7.4.11
+        io.fabric8.s2i.version.jolokia: 1.7.1.redhat-00001
+    ContainerConfig:
+      Hostname: 4d51740e78f3
+      User: '185'
+      ExposedPorts:
+        8080/tcp: {}
+        8443/tcp: {}
+        8778/tcp: {}
+      Env:
+        - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+        - container=oci
+        - HOME=/home/jboss
+        - JAVA_HOME=/usr/lib/jvm/java-11
+        - JAVA_VENDOR=openjdk
+        - JAVA_VERSION=11
+        - JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk
+        - JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/
+        - MAVEN_VERSION=3.6
+        - EAP_FULL_GROUPID=org.jboss.eap
+        - JBOSS_EAP_VERSION=7.4.11
+        - JBOSS_HOME=/opt/eap
+        - JBOSS_PRODUCT=eap
+        - LAUNCH_JBOSS_IN_BACKGROUND=true
+        - PRODUCT_VERSION=7.4.11
+        - WILDFLY_VERSION=7.4.11.GA-redhat-00002
+        - SSO_FORCE_LEGACY_SECURITY=true
+        - JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy
+        - JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm
+        - JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/
+        - >-
+          JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/
+        - S2I_SOURCE_DEPLOYMENTS_FILTER=*.war *.ear *.rar *.jar
+        - JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/
+        - JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i
+        - >-
+          GALLEON_LOCAL_MAVEN_REPO=/opt/jboss/container/wildfly/s2i/galleon/galleon-m2-repository
+        - >-
+          GALLEON_MAVEN_BUILD_IMG_SETTINGS_XML=/opt/jboss/container/wildfly/s2i/galleon/build-image-settings.xml
+        - >-
+          GALLEON_MAVEN_SETTINGS_XML=/opt/jboss/container/wildfly/s2i/galleon/settings.xml
+        - GALLEON_VERSION=4.2.9.Final
+        - GALLEON_WILDFLY_VERSION=5.2.6.Final
+        - >-
+          JBOSS_CONTAINER_WILDFLY_S2I_GALLEON_DIR=/opt/jboss/container/wildfly/s2i/galleon
+        - >-
+          JBOSS_CONTAINER_WILDFLY_S2I_GALLEON_PROVISION=/opt/jboss/container/wildfly/s2i/galleon/provisioning/generic_provisioning
+        - JBOSS_CONTAINER_WILDFLY_S2I_MODULE=/opt/jboss/container/wildfly/s2i
+        - S2I_COPY_SERVER=true
+        - >-
+          TMP_GALLEON_LOCAL_MAVEN_REPO=/opt/jboss/container/wildfly/s2i/galleon/tmp-galleon-m2-repository
+        - WILDFLY_S2I_OUTPUT_DIR=/s2i-output
+        - DELETE_BUILD_ARTIFACTS=true
+        - GALLEON_BUILD_FP_MAVEN_ARGS_APPEND=-Dcom.redhat.xpaas.repo.jbossorg
+        - >-
+          GALLEON_DEFAULT_FAT_SERVER=/opt/jboss/container/eap/galleon/definitions/fat-default-server
+        - >-
+          GALLEON_DEFAULT_SERVER=/opt/jboss/container/eap/galleon/definitions/slim-default-server
+        - GALLEON_DEFINITIONS=/opt/jboss/container/eap/galleon/definitions
+        - GALLEON_FP_COMMON_PKG_NAME=eap.s2i.common
+        - GALLEON_FP_PATH=/opt/jboss/container/eap/galleon/eap-s2i-galleon-pack
+        - >-
+          GALLEON_MAVEN_REPO_HOOK_SCRIPT=/opt/jboss/container/eap/galleon/patching.sh
+        - GALLEON_PROVISON_FP_MAVEN_ARGS_APPEND=-Dcom.redhat.xpaas.repo.jbossorg
+        - GALLEON_S2I_FP_ARTIFACT_ID=eap-s2i-galleon-pack
+        - GALLEON_S2I_FP_GROUP_ID=org.jboss.eap.galleon.s2i
+        - GALLEON_S2I_PRODUCER_NAME=eap-s2i
+        - >-
+          JBOSS_CONTAINER_EAP_GALLEON_FP_PACKAGES=/opt/jboss/container/eap/galleon/eap-s2i-galleon-pack/src/main/resources/packages
+        - >-
+          OFFLINER_URLS=--url https://repo1.maven.org/maven2/ --url
+          https://repository.jboss.org/nexus/content/groups/public/ --url
+          https://maven.repository.redhat.com/ga/
+        - >-
+          WILDFLY_DIST_MAVEN_LOCATION=https://repository.jboss.org/nexus/content/groups/public/org/wildfly/wildfly-dist
+        - S2I_FP_VERSION=23.0.0.Final
+        - DEFAULT_ADMIN_USERNAME=eapadmin
+        - LD_PRELOAD=libnss_wrapper.so
+        - NSS_WRAPPER_GROUP=/etc/group
+        - NSS_WRAPPER_PASSWD=/home/jboss/passwd
+        - 'JBOSS_MODULES_SYSTEM_PKGS=jdk.nashorn.api,com.sun.crypto.provider'
+        - AB_JOLOKIA_AUTH_OPENSHIFT=true
+        - AB_JOLOKIA_HTTPS=true
+        - AB_JOLOKIA_PASSWORD_RANDOM=true
+        - JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia
+        - JOLOKIA_VERSION=1.7.1
+        - >-
+          AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml
+        - JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus
+        - OFFLINER_VERSION=1.6
+        - AB_PROMETHEUS_JMX_EXPORTER_PORT=9799
+        - HTTPS_ENABLE_HTTP2=true
+        - JBOSS_IMAGE_NAME=jboss-eap-7/eap74-openjdk11-openshift-rhel8
+        - JBOSS_IMAGE_VERSION=7.4.11
+        - OPENSHIFT_BUILD_NAME=eap-app-3
+        - OPENSHIFT_BUILD_NAMESPACE=europe
+        - >-
+          OPENSHIFT_BUILD_SOURCE=https://github.com/ricardoaraujo75/devops-ocp-app.git
+        - OPENSHIFT_BUILD_COMMIT=e9036143c95b0ed93d82d0ee7722c87f267054b1
+      Cmd:
+        - /bin/sh
+        - '-c'
+        - /usr/local/s2i/run
+      WorkingDir: /home/jboss
+      Labels:
+        org.jboss.container.deployments-dir: /deployments
+        vcs-type: git
+        io.openshift.build.commit.author: riaraujo <riaraujo@redhat.com>
+        io.k8s.display-name: JBoss EAP 7.4
+        com.redhat.component: jboss-eap-74-openjdk11-builder-openshift-rhel8-container
+        summary: >-
+          Red Hat JBoss Enterprise Application Platform 7.4 OpenShift container
+          image.
+        release: '3'
+        io.openshift.build.commit.date: 'Tue Mar 28 21:59:31 2023 -0300'
+        io.openshift.s2i.scripts-url: 'image:///usr/local/s2i'
+        vendor: 'Red Hat, Inc.'
+        io.openshift.expose-services: '8080:http'
+        io.openshift.build.source-location: 'https://github.com/ricardoaraujo75/devops-ocp-app.git'
+        distribution-scope: public
+        name: jboss-eap-7/eap74-openjdk11-openshift-rhel8
+        vcs-ref: f8f65d991606c4178cd18265d7e664d0f6c04cc4
+        io.openshift.s2i.destination: /tmp
+        io.k8s.description: Platform for building and running JavaEE applications on JBoss EAP 7.4
+        build-date: '2023-05-23T15:21:31'
+        io.fabric8.s2i.version.maven: '3.6'
+        org.jboss.product: eap
+        io.openshift.build.commit.message: WIP
+        url: >-
+          https://access.redhat.com/containers/#/registry.access.redhat.com/jboss-eap-7/eap74-openjdk11-openshift-rhel8/images/7.4.11-3
+        org.jboss.product.openjdk.version: '11'
+        com.redhat.dev-mode: 'DEBUG:true'
+        com.redhat.license_terms: 'https://www.redhat.com/agreements'
+        architecture: x86_64
+        io.openshift.build.commit.id: e9036143c95b0ed93d82d0ee7722c87f267054b1
+        io.cekit.version: 3.2.1
+        io.openshift.tags: 'builder,javaee,eap,eap7'
+        com.redhat.deployments-dir: /opt/eap/standalone/deployments
+        io.buildah.version: 1.26.4
+        version: 7.4.11
+        org.jboss.product.version: 7.4.11
+        maintainer: Red Hat
+        io.openshift.build.commit.ref: main
+        io.openshift.build.source-context-dir: /
+        description: >-
+          Red Hat JBoss Enterprise Application Platform 7.4 OpenShift container
+          image.
+        com.redhat.dev-mode.port: 'DEBUG_PORT:8787'
+        io.openshift.build.image: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/jboss-eap74-openjdk11-openshift@sha256:625b52d27a99cec0dde22150805b8de7a84117b046da75703dcd348f6dd2117c
+        org.jboss.product.eap.version: 7.4.11
+        io.fabric8.s2i.version.jolokia: 1.7.1.redhat-00001
+    Created: '2023-06-28T02:57:32Z'
+    Parent: 'sha256:420662e99bc960dac528347034ff77df4c304187557c44c850d02598b2a4a6c3'
+    Architecture: amd64
+    kind: DockerImage
+    Id: 'sha256:d214844583589ac68a95a3a7001f1288ac7ecc8f400bd27876031c6b1da741a8'
+    apiVersion: image.openshift.io/1.0
+  dockerImageMetadataVersion: '1.0'
+  dockerImageLayers:
+    - name: 'sha256:41289f33ff60dc6e03012f37aab956173e7e22052910892f03ce72df2bfee4e6'
+      size: 79374014
+      mediaType: application/vnd.docker.image.rootfs.diff.tar.gzip
+    - name: 'sha256:217b3af4dd059e32b47822448b44052ff394cb90762115638480109589e1ef0a'
+      size: 459433413
+      mediaType: application/vnd.docker.image.rootfs.diff.tar.gzip
+    - name: 'sha256:1f297d14830d124b3eb27142eb5049159a0bbce5bde2ebe6c3dec9eb40a5d8d6'
+      size: 20764387
+      mediaType: application/vnd.docker.image.rootfs.diff.tar.gzip
+  dockerImageManifestMediaType: application/vnd.docker.distribution.manifest.v2+json
+
